@@ -1,5 +1,5 @@
 import { useAuth } from '@/lib/auth';
-import Navbar from '@/components/Navbar';
+import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
 
 const Dashboard = () => {
   const auth = useAuth();
@@ -9,7 +9,35 @@ const Dashboard = () => {
   }
 
   return (
-    <Navbar/>
+    <Flex flexDirection="column" p={10}>
+        <Flex pb={8}>
+          <Heading size="lg">My routine</Heading>
+        </Flex>
+        <Box
+          backgroundColor="white"
+          width="100%"
+          borderRadius="base"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          p={12}
+          boxShadow="lg"
+        >
+          <Heading as="h2" size="md">
+            You don't have any routines yet.
+          </Heading>
+          <Text borderRadius="sm">Try adding a new one 🦾</Text>
+          <Button
+            variant="solid"
+            size="md"
+            mt={5}
+            backgroundColor="whatsapp.400"
+            color="white"
+          >
+            Add routine
+          </Button>
+        </Box>
+      </Flex>
   )
 }
 
