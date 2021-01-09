@@ -1,4 +1,4 @@
-import { AuthProvider } from '../lib/auth'
+import { AuthProvider } from '@/lib/auth';
 import { ChakraProvider } from "@chakra-ui/react";
 import customTheme from "@/styles/theme";
 
