@@ -1,38 +1,29 @@
 import Head from 'next/head';
-import { auth } from 'firebase';
 import { useAuth } from '../lib/auth';
+import { Button, ButtonGroup, Code, Heading, Text } from "@chakra-ui/react"
 
 const Home = () => {
   const auth = useAuth();
 
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
-        <h1 className="title">Fast Feedback</h1>
-
-        <p className="description">
-          Current user: <code>{auth?.user ? auth.user.email : 'None'}</code>
-        </p>
+        <Heading>Fast Feedback</Heading>
+        <Text>
+          Current user: <Code>{auth?.user ? auth.user.email : 'None'}</Code>
+        </Text>
         {auth?.user ? (
-          <button onClick={(e) => auth.signout()}>Sign Out</button>
+          <Button onClick={(e) => auth.signout()}>Sign Out</Button>
         ) : (
-          <button onClick={(e) => auth.signinWithGoogle()}>Sign In</button>
+          <Button onClick={(e) => auth.signinWithGoogle()}>Sign In</Button>
         )}
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
       </footer>
     </div>
   );
