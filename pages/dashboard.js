@@ -1,3 +1,4 @@
+import AddRoutineModal from '@/components/AddRoutineModal';
 import { useAuth } from '@/lib/auth';
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
 
@@ -27,15 +28,7 @@ const Dashboard = () => {
             You don't have any routines yet.
           </Heading>
           <Text borderRadius="sm">Try adding a new one 🦾</Text>
-          <Button
-            variant="solid"
-            size="md"
-            mt={5}
-            backgroundColor="whatsapp.400"
-            color="white"
-          >
-            Add routine
-          </Button>
+          <AddRoutineModal/>
         </Box>
       </Flex>
   )

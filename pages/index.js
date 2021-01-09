@@ -3,10 +3,13 @@ import { useAuth } from '@/lib/auth';
 import { Flex, Button, ButtonGroup, Code, Heading, Text, Box, createIcon } from "@chakra-ui/react"
 import { Logo } from '@/components/Logo';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
+import useSWR from 'swr';
 
 const Home = () => {
   const auth = useAuth();
+  const {data, error} = useSWR('/api/users');
 
+  console.log(data);
   return (
     <div>
             <Head>
@@ -28,7 +31,6 @@ const Home = () => {
 
     <Logo fontSize="20vw"/>        
 
-    
       <Button
         onClick={() => auth.signinWithGoogle()}
         backgroundColor="white"
