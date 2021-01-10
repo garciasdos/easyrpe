@@ -1,24 +1,11 @@
-import Head from 'next/head';
-import { useAuth } from '@/lib/auth';
-import {
-  Flex,
-  Button,
-  ButtonGroup,
-  Code,
-  Heading,
-  Text,
-  Box,
-  createIcon
-} from '@chakra-ui/react';
-import { Logo } from '@/components/Logo';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
-import useSWR from 'swr';
+import { Logo } from '@/components/Logo';
+import { useAuth } from '@/lib/auth';
+import { Box, Button, Flex } from '@chakra-ui/react';
+import Head from 'next/head';
 
 const Home = () => {
   const auth = useAuth();
-  const { data, error } = useSWR('/api/users');
-
-  console.log(data);
   return (
     <div>
       <Head>

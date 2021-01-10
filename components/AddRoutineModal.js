@@ -10,18 +10,38 @@ const {
   Button,
   Modal,
   useDisclosure,
+  useToast,
   ModalOverlay
 } = require('@chakra-ui/react');
+import { useAuth } from '@/lib/auth';
+import { createRoutine } from '@/lib/db';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 function AddRoutineModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const toast = useToast();
+  const auth = useAuth();
   const initialRef = React.useRef();
   const finalRef = React.useRef();
   const { handleSubmit, register } = useForm();
-  const createRoutine = (values) => console.log(values);
+  const onCreateRoutine = (values) => {
+    createRoutine(
+      auth.user.uid,
+      values.name,
+      new Date().toDateString(),
+      values.startDate,
+      values.endDate
+    );
+    onClose();
+    toast({
+      title: `Routine created.`,
+      description: `Routine ${values.name} created \u{270C}`,
+      status: 'success',
+      duration: 9000,
+      isClosable: true
+    });
+  };
 
   return (
     <>
@@ -46,8 +66,8 @@ function AddRoutineModal() {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent as="form" onSubmit={handleSubmit(createRoutine)}>
-          <ModalHeader fontWeight="bold">Create your account</ModalHeader>
+        <ModalContent as="form" onSubmit={handleSubmit(onCreateRoutine)}>
+          <ModalHeader fontWeight="bold">Add Routine</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
@@ -63,13 +83,23 @@ function AddRoutineModal() {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>User</FormLabel>
+              <FormLabel>Start date</FormLabel>
               <Input
-                placeholder="Last name"
-                name="user"
+                name="startDate"
                 ref={register({
                   required: 'Required'
                 })}
+                type="date"
+              />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>End date</FormLabel>
+              <Input
+                name="endDate"
+                ref={register({
+                  required: 'Required'
+                })}
+                type="date"
               />
             </FormControl>
           </ModalBody>
