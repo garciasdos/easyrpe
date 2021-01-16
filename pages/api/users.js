@@ -1,5 +1,3 @@
-import { getAllUsers } from '@/lib/db';
-
 export default async (req, res) => {
   const { users } = await getAllUsers();
 
