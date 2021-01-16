@@ -27,11 +27,8 @@ const Body = (props) => {
       </Flex>
       <Box
         backgroundColor="white"
-        width="100%"
         borderRadius="base"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
+        justifyContent="center"
         p={12}
         boxShadow="lg"
       >

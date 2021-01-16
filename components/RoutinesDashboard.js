@@ -1,8 +1,7 @@
-import React from 'react';
-import NextLink from 'next/link';
-import { Box, Button, Flex, Link, Avatar, Icon } from '@chakra-ui/core';
-
 import { useAuth } from '@/lib/auth';
+import { Avatar, Box, Flex, Icon, Link } from '@chakra-ui/core';
+import NextLink from 'next/link';
+import React from 'react';
 import Footer from './Footer';
 
 const DashboardShell = ({ children }) => {
