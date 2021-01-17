@@ -17,12 +17,20 @@ function FirstStep(props) {
   const toast = useToast();
 
   const onCreateRoutine = (values, actions) => {
+    const routine = {
+      userId: props.user.uid,
+      name: values.name,
+      createdAt: new Date(),
+      startDate: new Date(values.startDate),
+      endDate: new Date(values.endDate)
+    };
+
     createRoutine(
-      props.user.uid,
-      values.name,
-      new Date(),
-      new Date(values.startDate),
-      new Date(values.endDate)
+      routine.userId,
+      routine.name,
+      routine.createdAt,
+      routine.startDate,
+      routine.endDate
     );
     actions.setSubmitting(false);
     toast({
@@ -32,7 +40,7 @@ function FirstStep(props) {
       duration: 9000,
       isClosable: true
     });
-    props.endFirstStep(false);
+    props.endFirstStep(routine);
   };
 
   const validateDates = (values) => {
