@@ -1,8 +1,5 @@
-import { useAuth } from '@/lib/auth';
-import { Box, Flex, Heading, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import Calendar from 'model/value_objects/calendar';
-import Link from 'next/link';
-import Week from '../Calendar/Day';
 
 const SecondStep = (props) => {
   if (!props.routine) {
