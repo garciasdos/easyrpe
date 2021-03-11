@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Stack, StackDivider, Text } from '@chakra-ui/react';
 import Calendar from 'model/value_objects/calendar';
 
 const SecondStep = (props) => {
@@ -7,24 +7,40 @@ const SecondStep = (props) => {
   }
 
   console.log(props.routine);
-
+  const weekLength = [...Array(7).keys()];
   const weeks = Calendar(props.routine.startDate, props.routine.endDate);
-  console.log(weeks);
   return (
-    <Flex>
-      <Flex flexDirection={'column'} spacing={4} width="300px">
-        {Object.values(weeks).map((week) => (
-          <Flex flexDirection={{ base: 'column', md: 'row' }}>
-            {Object.values(week).map((day) => (
-              <Box border="1px">
-                <Text>{day.getDate()}</Text>
-                {/* TODO: Each day component */}
-              </Box>
-            ))}
-          </Flex>
-        ))}
-      </Flex>
-    </Flex>
+    <Stack
+      direction={'column'}
+      spacing={4}
+      divider={<StackDivider borderColor="gray.200" />}
+    >
+      {Object.entries(weeks).map(([key, week]) => (
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          spacing={4}
+          divider={<StackDivider borderColor="gray.200" />}
+        >
+          {weekLength.map((weekDayNumber) => (
+            <Stack direction="column">
+              {week[weekDayNumber] ? (
+                <>
+                  <Text>{week[weekDayNumber].toLocaleDateString()}</Text>
+                  <Box width={{ base: 100, md: '100px' }} height="100px" />
+                </>
+              ) : (
+                <Box
+                  width={{ base: 0, md: '100px' }}
+                  height={{ base: 0, md: '100px' }}
+                  backgroundColor="gray.200"
+                />
+              )}
+            </Stack>
+          ))}
+          )
+        </Stack>
+      ))}
+    </Stack>
   );
 };
 
