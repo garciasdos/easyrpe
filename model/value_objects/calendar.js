@@ -1,5 +1,3 @@
-import { Flex } from '@chakra-ui/layout';
-
 Date.prototype.getWeekNumber = function () {
   var d = new Date(
     Date.UTC(this.getFullYear(), this.getMonth(), this.getDate())
